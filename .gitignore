@@ -1,0 +1,7 @@
+node_modules/**
+build/**
+
+
+#API KEYS
+secrets.json
+mnemonic.json
