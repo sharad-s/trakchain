@@ -1,7 +1,18 @@
+// React
 import React, { Component } from 'react'
+import { Route } from 'react-router-dom'
+
+// Components
+import NavBar from "./components/constants/navbar"
+import HomePage from "./components/pages/homepage"
+
+
+//Smart Contracts
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
+import Web3 from 'web3'
 
+// Css
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
@@ -21,10 +32,15 @@ class App extends Component {
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
 
+    // Use local node only for development
+    const provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
+    const web3 = new Web3(provider);
+
     getWeb3
     .then(results => {
       this.setState({
-        web3: results.web3
+        // web3: results.web3
+        web3 : web3
       })
 
       // Instantiate contract once web3 provided.
@@ -59,6 +75,7 @@ class App extends Component {
         return simpleStorageInstance.set(5, {from: accounts[0]})
       }).then((result) => {
         // Get the value from the contract to prove it worked.
+
         return simpleStorageInstance.get.call(accounts[0])
       }).then((result) => {
         // Update state with the result.
@@ -70,22 +87,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-            <a href="#" className="pure-menu-heading pure-menu-link">Truffle Box</a>
-        </nav>
-
-        <main className="container">
-          <div className="pure-g">
-            <div className="pure-u-1-1">
-              <h1>Good to Go!</h1>
-              <p>Your Truffle Box is installed and ready.</p>
-              <h2>Smart Contract Example</h2>
-              <p>If your contracts compiled and migrated successfully, below will show a stored value of 5 (by default).</p>
-              <p>Try changing the value stored on <strong>line 59</strong> of App.js.</p>
-              <p>The stored value is: {this.state.storageValue}</p>
-            </div>
-          </div>
-        </main>
+        <NavBar></NavBar>
+        <HomePage storageValue={ this.state.storageValue }></HomePage>
       </div>
     );
   }
