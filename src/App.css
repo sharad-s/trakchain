@@ -1,8 +1,16 @@
 /* PAGE */
 
+App {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
 body,
 .pure-g [class*=pure-u] {
   font-family: 'Open Sans', sans-serif;
+
 }
 
 h1, h2, h3 {
@@ -14,6 +22,10 @@ code {
   margin: 20px 0 15px 0;
   padding: 10px;
   background: #eee;
+}
+
+.main-container {
+  order: 2;
 }
 
 .container {
@@ -43,6 +55,8 @@ code {
   background: #0c1a2b;
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
   /* border-bottom: 1px outset #000; */
+  flex: 0 0 auto;
+  order: 1;
 }
 
 .navbar a {
@@ -71,8 +85,39 @@ code {
   margin-right: 10px;
 }
 
+/* FOOTER */
 
-/* FLEX CONTAINER  */
+.footer {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  -webkit-flex-flow: row wrap;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex: 0 0 auto;
+  background-color: #dcdcdc;
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer audio {
+  order: 1;
+  flex: 3;
+}
+
+.footer p {
+  order: 2;
+  flex: 1;
+}
+
+
+
+/* FLEXBOX  */
 
 .flex-container {
 
@@ -82,7 +127,7 @@ code {
   display: -webkit-flex;
   display: flex;
   -webkit-flex-flow: row wrap;
-  justify-content: left;
+  justify-content: center;
 }
 
 .flex-item {

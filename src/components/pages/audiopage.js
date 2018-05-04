@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import FooterAudioPlayer from "../constants/footeraudioplayer"
 import SoundFile from "../constants/soundfile"
 
+//Sample Audio Data
 const audioJSON = [
   {
     "name": "LILITH",
@@ -22,6 +23,12 @@ const audioJSON = [
     "artist": "Joseph L'etranger",
     "fileHash": "Qmdw3m5ZdoDT4Z8JHE6JMPwz8gtbVyvUY1B2wMBCxPgCv6",
     "fileID": 3
+  },
+  {
+    "name": "You Was Right (Eric Dingus Remix)",
+    "artist": "Eric Dingus",
+    "fileHash": "QmczcPVB8ppbVZJBZXGRVdtSVbGxK6s5YN8iD2xhypoXUG",
+    "fileID": 4
   }
 ];
 
@@ -41,41 +48,36 @@ class AudioPage extends Component {
   }
 
   componentDidMount() {
-    // Instantiate contract once web3 provided.
+    // // Instantiate contract once web3 provided.
     // this.instantiateContract()
-    this.getAudioArray()
-  }
 
-  //Returns Array of Audio files by hash
-  getAudioArray() {
-    // Hack for immediate JSON response
+    // Get Queried Beats. Hack for immediate JSON response
     let audioEntries = audioJSON
 
-    // Call Async function to populate state with array
+    // Call Async function to populate state with query response
     this.pushAudioArray(audioEntries)
   }
 
-   //Push Audio Data to state
+   //Function: Push audio entries to state
    pushAudioArray = async (audioEntries) => {
     let array = [];
     for (let i=0; i < audioEntries.length ; i++) {
       const audioElement = audioEntries[i]
       array.push(audioElement)
     }
-
     //Push new Audio Elements to state
     await this.setState({
       audioElements: array,
       listLength : array.length
     })
-
   }
 
   //Plays audio on AudioPlayer Component
   //Recieves Soundfile Object from the calling SoundFile Component
   playSound = async (soundFileObject) => {
     console.log("FUNCTION PLAYSOUND RECIEVES: ", soundFileObject)
-    await this.setState({ currentSound: {
+    await this.setState({
+      currentSound: {
         fileHash : soundFileObject.fileHash,
         fileID : soundFileObject.fileID,
         name : soundFileObject.name,

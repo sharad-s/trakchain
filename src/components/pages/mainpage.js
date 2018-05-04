@@ -6,7 +6,7 @@ import React from 'react'
 import PropTypes from "prop-types";
 
 const MainPage = (props) => (
-  <div className="ui container">
+  <div className="main-container">
 
     <main className="container">
       <div className="pure-g">

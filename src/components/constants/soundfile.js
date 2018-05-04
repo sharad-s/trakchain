@@ -40,7 +40,12 @@ class SoundFile extends Component {
   render() {
     // let color="#" + this.state.color
     return (
-      <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)} />
+      <div className="flex-box">
+        <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)} />
+        <span> {this.state.artist} </span> <br/>
+        <span> {this.state.name} </span>
+
+      </div>
     );
   }
 }
