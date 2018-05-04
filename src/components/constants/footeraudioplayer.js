@@ -11,7 +11,7 @@ class FooterAudioPlayer extends Component {
     super(props)
     this.state = {
       baseUrl: "https://ipfs.io/ipfs/",
-      currentSoundHash: 'QmWL4AKE52rWc2YxfVVyE5MNNDWBRSKkqqZCPZWsK6PmJf',
+      currentSoundHash: "Qmdw3m5ZdoDT4Z8JHE6JMPwz8gtbVyvUY1B2wMBCxPgCv6",
       isPlaying: this.props.isPlaying,
     }
   }
@@ -21,9 +21,10 @@ class FooterAudioPlayer extends Component {
 
   render() {
     let url=  this.state.baseUrl + this.state.currentSoundHash
+    console.log("URL : " + url)
     return (
       <div className="footer">
-        <ReactAudioPlayer className="audio" src={url} controls autoPlay={this.props.autoPlay}/>
+        <ReactAudioPlayer className="audio" src={this.state.baseUrl + this.state.currentSoundHash} controls autoPlay={this.props.autoPlay}/>
       </div>
     )
   }

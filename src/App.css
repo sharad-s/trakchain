@@ -39,12 +39,16 @@ code {
 .navbar {
   position: fixed;
   padding: 5px;
+  background: #fff;
   background: #0c1a2b;
   font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  /* border-bottom: 1px outset #000; */
 }
 
 .navbar a {
+  color: #000;
   color: #fff;
+  padding : 5px;
 }
 
 .navbar a:active,
@@ -65,4 +69,41 @@ code {
 .navbar .uport-logo {
   height: 16px;
   margin-right: 10px;
+}
+
+
+/* FLEX CONTAINER  */
+
+.flex-container {
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  justify-content: left;
+}
+
+.flex-item {
+  margin: 5px;
+  color: black;
+  text-align: center;
+  vertical-align: center;
+  height: 10vw;
+  width: 10vw;
+  line-height: 10vw;
+}
+
+.flex-item:hover {
+border: black;
+border-style: solid;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+
+
+
+@media screen and (min-width: 476px) {
 }

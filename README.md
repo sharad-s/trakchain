@@ -1,4 +1,4 @@
-# Trakchain
+# Trakchain v0.0.1
 Trakchain is Invite-only beat marketplace for independent artists and producers.
 Built on the blockchain.
 

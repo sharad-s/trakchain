@@ -13,7 +13,7 @@ class SoundFile extends Component {
       fileID: this.props.fileID,
       name: '',
       author: '',
-      color: "383F51"
+      color: "red"
     }
   }
 
@@ -25,16 +25,10 @@ class SoundFile extends Component {
   }
 
   handleClick(e) {
-    console.log("playing " + this.state.fileHash)
+    // console.log("playing " + this.state.fileHash)
     // e.preventDefault();
+    // Call playSound function from props
     this.props.playSound(this.state.fileHash)
-  }
-
-  urlExists(hash){
-    let http = new XMLHttpRequest();
-    http.open('HEAD', "https://ipfs.io/ipfs/" + hash, false);
-    http.send();
-    return http.status!==404;
   }
 
   render() {
