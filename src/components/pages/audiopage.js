@@ -73,7 +73,7 @@ class AudioPage extends Component {
         "name": audioEntry.name
       })
     }
-    
+
     await this.setState({contractHashes: array})
   }
 
@@ -100,7 +100,6 @@ class AudioPage extends Component {
     return (
       <div className="ui container">
 
-        //Header
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
@@ -109,14 +108,15 @@ class AudioPage extends Component {
             </div>
           </div>
 
-          //Flex Container for audio file elements
-          <div className="flex-container" style={{backgroundColor: this.state.currentColor}} >
+          <div className="flex-container" style={{ backgroundColor: this.state.currentColor}} >
             {allAudioFiles}
           </div>
         </main>
 
-        //Footer Audio Player
-        <FooterAudioPlayer currentSound={this.state.currentSoundHash} autoPlay={this.state.isPlaying} />
+        <FooterAudioPlayer
+          currentSoundHash={ this.state.currentSoundHash }
+          autoPlay={ this.state.isPlaying } 
+        />
 
       </div>
     );
