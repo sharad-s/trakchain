@@ -9,10 +9,10 @@ class SoundFile extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      name: this.props.name,
+      artist: this.props.artist,
       fileHash: this.props.fileHash,
       fileID: this.props.fileID,
-      name: '',
-      author: '',
       color: "red"
     }
   }
@@ -25,17 +25,22 @@ class SoundFile extends Component {
   }
 
   handleClick(e) {
-    // console.log("playing " + this.state.fileHash)
     // e.preventDefault();
     // Call playSound function from props
-    this.props.playSound(this.state.fileHash)
+    const soundFileObject = {
+      "name": this.state.name,
+      "artist": this.state.artist,
+      "fileHash": this.state.fileHash,
+      "fileID": this.state.fileID
+    }
+    console.log("SOUNDFILE OBJECT: ", soundFileObject)
+    this.props.playSound(soundFileObject)
   }
 
   render() {
     // let color="#" + this.state.color
     return (
-      <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)}>
-      </div>
+      <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)} />
     );
   }
 }

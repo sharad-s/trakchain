@@ -4,15 +4,35 @@ import React, { Component } from 'react'
 import FooterAudioPlayer from "../constants/footeraudioplayer"
 import SoundFile from "../constants/soundfile"
 
+const audioJSON = [
+  {
+    "name": "LILITH",
+    "artist": "Joseph L'etranger",
+    "fileHash": "QmbiHD9x9zrbMx7Z5yjfyjxfYJKTFMdGiPAeHBr5jYUmxE",
+    "fileID": 1,
+  },
+  {
+    "name": "Uzi",
+    "artist": "Octbr",
+    "fileHash": "QmWL4AKE52rWc2YxfVVyE5MNNDWBRSKkqqZCPZWsK6PmJf",
+    "fileID": 2
+  },
+  {
+    "name": "ZZZ",
+    "artist": "Joseph L'etranger",
+    "fileHash": "Qmdw3m5ZdoDT4Z8JHE6JMPwz8gtbVyvUY1B2wMBCxPgCv6",
+    "fileID": 3
+  }
+];
+
 class AudioPage extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       web3: this.props.web3,
-      soundFiles: [],
-      contractHashes: [],
-      currentSoundHash:'',
+      audioElements: [],
+      currentSound: {},      //Crurent Sound Object
       currentColor:'383f51',
       listLength: null,
       isPlaying:null,
@@ -20,7 +40,7 @@ class AudioPage extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     // Instantiate contract once web3 provided.
     // this.instantiateContract()
     this.getAudioArray()
@@ -28,33 +48,8 @@ class AudioPage extends Component {
 
   //Returns Array of Audio files by hash
   getAudioArray() {
-
     // Hack for immediate JSON response
-    let audioEntries = [
-      {
-    		"name": "You Was Right (Eric Dingus Remix)",
-    		"artist": "Eric Dingus",
-    		"hash": "QmczcPVB8ppbVZJBZXGRVdtSVbGxK6s5YN8iD2xhypoXUG",
-        "id": 1,
-    	},
-    	{
-    		"name": "Uzi",
-    		"artist": "Octbr",
-    		"hash": "QmWL4AKE52rWc2YxfVVyE5MNNDWBRSKkqqZCPZWsK6PmJf",
-        "id": 2
-    	},
-    	{
-    		"name": "ZZZ",
-    		"artist": "Joseph L'etranger",
-    		"hash": "Qmdw3m5ZdoDT4Z8JHE6JMPwz8gtbVyvUY1B2wMBCxPgCv6",
-        "id": 3
-    	}
-    ];
-
-    // Set list Length
-    this.setState({
-      listLength : audioEntries.length
-    })
+    let audioEntries = audioJSON
 
     // Call Async function to populate state with array
     this.pushAudioArray(audioEntries)
@@ -63,40 +58,43 @@ class AudioPage extends Component {
    //Push Audio Data to state
    pushAudioArray = async (audioEntries) => {
     let array = [];
-
     for (let i=0; i < audioEntries.length ; i++) {
-      const audioEntry = audioEntries[i]
-      array.push({
-        "fileID": audioEntry.id,
-        "fileHash": audioEntry.hash,
-        "artist": audioEntry.artist,
-        "name": audioEntry.name
-      })
+      const audioElement = audioEntries[i]
+      array.push(audioElement)
     }
 
-    await this.setState({contractHashes: array})
+    //Push new Audio Elements to state
+    await this.setState({
+      audioElements: array,
+      listLength : array.length
+    })
+
   }
 
   //Plays audio on AudioPlayer Component
-  playSound = async hash => {
-    await this.setState({currentSoundHash: hash})
-    console.log("PLAYING SOUND: " + this.state.currentSoundHash)
+  //Recieves Soundfile Object from the calling SoundFile Component
+  playSound = async (soundFileObject) => {
+    console.log("FUNCTION PLAYSOUND RECIEVES: ", soundFileObject)
+    await this.setState({ currentSound: {
+        fileHash : soundFileObject.fileHash,
+        fileID : soundFileObject.fileID,
+        name : soundFileObject.name,
+        artist : soundFileObject.artist
+      }
+    })
     await this.setState({isPlaying: true})
   }
 
   render() {
-
-    // For each item in contract hashes, return a Soundfile component
-    let allAudioFiles = this.state.contractHashes.map(item => {
+    // For each item in audioElements, return a Soundfile component
+    let allSoundFiles = this.state.audioElements.map(item => {
         return <SoundFile key={item.fileID}
+          name={ item.name }
+          artist={ item.artist }
           fileHash={ item.fileHash }
           fileID={ item.fileID }
-          artist={ item.artist }
-          name={ item.name }
           playSound={(hash) => this.playSound(hash)}/>
     })
-    // console.log(allAudioFiles)
-
     return (
       <div className="ui container">
 
@@ -109,13 +107,13 @@ class AudioPage extends Component {
           </div>
 
           <div className="flex-container" style={{ backgroundColor: this.state.currentColor}} >
-            {allAudioFiles}
+            {allSoundFiles}
           </div>
         </main>
 
         <FooterAudioPlayer
-          currentSoundHash={ this.state.currentSoundHash }
-          autoPlay={ this.state.isPlaying } 
+          currentSound={ this.state.currentSound }
+          autoPlay={ this.state.isPlaying }
         />
 
       </div>
@@ -126,7 +124,6 @@ class AudioPage extends Component {
 AudioPage.PropTypes = {
   // isAuthenticated: PropTypes.bool.isRequired
 };
-
 
 
 export default (AudioPage);

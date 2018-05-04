@@ -11,29 +11,26 @@ class FooterAudioPlayer extends Component {
     super(props)
     this.state = {
       baseUrl: "https://ipfs.io/ipfs/",
-      currentSoundHash: '',
+      currentSound: {},
       isPlaying: this.props.isPlaying,
     }
   }
 
-  componentDidMount() {
-  }
-
+  //Upon prop update, update the state
   componentWillReceiveProps(nextProps) {
-    console.log("Compoent will recieve props: ",  nextProps)
+    console.log(" Player Component will recieve props: ",  nextProps)
     this.setState({
-      currentSoundHash : nextProps.currentSoundHash,
+      currentSound : nextProps.currentSound,
       isPlaying : nextProps.isPlaying
     })
   }
 
-  break;
-
   render() {
-    let url=  this.state.baseUrl + this.state.currentSoundHash
-    console.log("URL : " + url)
+    //Construct audio source URL and render audio element
+    let url=  this.state.baseUrl + this.state.currentSound.fileHash
     return (
       <div className="footer">
+        <p> <strong> {this.state.currentSound.name}</strong> - {this.state.currentSound.artist}</p>
         <ReactAudioPlayer className="audio" src={url} controls autoPlay={this.props.autoPlay}/>
       </div>
     )
@@ -42,7 +39,6 @@ class FooterAudioPlayer extends Component {
 
 FooterAudioPlayer.PropTypes = {
   currentSoundHash: PropTypes.string.isRequired,
-
   isPlaying: PropTypes.bool.isRequired
 }
 
