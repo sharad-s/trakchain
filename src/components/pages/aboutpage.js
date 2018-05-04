@@ -10,8 +10,8 @@ const AboutPage = (props) => (
     <main className="container">
       <div className="pure-g">
         <div className="pure-u-1-1">
-          <h1>This is the hook</h1>
-          <p>Learn all about me.</p>
+          <h1>About Me</h1>
+          <p>It's all about me.</p>
         </div>
       </div>
     </main>

@@ -12,6 +12,7 @@ const NavBar = () => (
   <nav className="navbar pure-menu pure-menu-horizontal">
     <Link to="/" className="pure-menu-heading pure-menu-link"> Truffle Box </Link>
     <Link to="/about">About</Link>
+    <Link to="/audio">Audio</Link>
   </nav>
 )
 

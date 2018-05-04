@@ -5,6 +5,8 @@ import { BrowserRouter, Route  } from 'react-router-dom'
 // Components
 import MainPage from "./components/pages/mainpage"
 import AboutPage from "./components/pages/aboutpage"
+import AudioPage from "./components/pages/audiopage"
+
 import NavBar from "./components/constants/navbar"
 
 
@@ -45,13 +47,13 @@ class App extends Component {
         // web3: results.web3
         web3 : web3
       })
-
       // Instantiate contract once web3 provided.
       this.instantiateContract()
     })
     .catch(() => {
       console.log('Error finding web3.')
     })
+
   }
 
   instantiateContract() {
@@ -92,11 +94,10 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <NavBar></NavBar>
-            <Route path="/" exact render={(props) => ( <MainPage storageValue={this.state.storageValue} /> )} />
+            <Route path="/" exact render={(props) => ( <MainPage storageValue={ this.state.storageValue } /> )} />
             <Route path="/about" component={ AboutPage } />
+            <Route path="/audio" component={ AudioPage }  />
           </div>
-
-
         </BrowserRouter>
     );
   }
