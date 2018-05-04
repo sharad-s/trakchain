@@ -1,10 +1,9 @@
 // React
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { BrowserRouter, Route  } from 'react-router-dom'
 
 // Components
-import NavBar from "./components/constants/navbar"
-import HomePage from "./components/pages/homepage"
+import MainPage from "./components/pages/mainpage"
 
 
 //Smart Contracts
@@ -86,10 +85,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <NavBar></NavBar>
-        <HomePage storageValue={ this.state.storageValue }></HomePage>
-      </div>
+        <BrowserRouter>
+          <Route path="/" exact render={(props) => ( <MainPage storageValue={this.state.storageValue}/> )} />
+        </BrowserRouter>
+
     );
   }
 }
