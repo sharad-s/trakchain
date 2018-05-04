@@ -1,18 +1,13 @@
 import React from 'react'
 
 // components
-import NavBar from "../constants/navbar"
 
 // Components/Props
 import PropTypes from "prop-types";
 
-//links
-import { Link } from 'react-router-dom';
-
 const MainPage = (props) => (
   <div className="ui container">
 
-    <NavBar></NavBar>
     <main className="container">
       <div className="pure-g">
         <div className="pure-u-1-1">

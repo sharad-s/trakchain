@@ -4,6 +4,10 @@ import { BrowserRouter, Route  } from 'react-router-dom'
 
 // Components
 import MainPage from "./components/pages/mainpage"
+import AboutPage from "./components/pages/aboutpage"
+import NavBar from "./components/constants/navbar"
+
+
 
 
 //Smart Contracts
@@ -86,9 +90,14 @@ class App extends Component {
   render() {
     return (
         <BrowserRouter>
-          <Route path="/" exact render={(props) => ( <MainPage storageValue={this.state.storageValue}/> )} />
-        </BrowserRouter>
+          <div className="App">
+            <NavBar></NavBar>
+            <Route path="/" exact render={(props) => ( <MainPage storageValue={this.state.storageValue} /> )} />
+            <Route path="/about" component={ AboutPage } />
+          </div>
 
+
+        </BrowserRouter>
     );
   }
 }
