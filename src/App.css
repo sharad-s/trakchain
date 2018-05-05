@@ -140,15 +140,19 @@ code {
   height: 10vw;
   width: 10vw;
   line-height: 10vw;
+  flex : 1 0 20%;
+  /* Child Image rezing */
+  display: flex;
 }
 
 .flex-item:hover {
-border: black;
-border-style: solid;
-box-sizing: border-box;
--moz-box-sizing: border-box;
--webkit-box-sizing: border-box;
+  border: black;
+  border-style: solid;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
+
 
 
 
