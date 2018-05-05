@@ -97,6 +97,7 @@ code {
   justify-content: space-around;
   flex-direction: row;
   flex: 0 0 auto;
+  order: 3;
   background-color: #dcdcdc;
 
   position: fixed;
@@ -128,6 +129,7 @@ code {
   display: flex;
   -webkit-flex-flow: row wrap;
   justify-content: center;
+
 }
 
 .flex-item {

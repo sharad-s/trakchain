@@ -6,12 +6,12 @@ Built on the blockchain.
 
 1. Install Truffle globally.
     ```javascript
-    npm install -g truffle
+    npm install -g truffle ipfs
     ```
 
-2. Download the box. This also takes care of installing the necessary dependencies.
+2. Install Dependencies.
     ```javascript
-    truffle unbox react
+    npm install
     ```
 
 3. Run the development console.
@@ -23,6 +23,12 @@ Built on the blockchain.
     ```javascript
     compile
     migrate
+    ```
+
+5. Spin up an IPFS daemon in a separate window.  
+    ```javascript
+    // In a separate window
+    ipfs daemon
     ```
 
 5. Run the webpack server for front-end hot reloading (outside the development console). Smart contract changes must be manually recompiled and migrated.

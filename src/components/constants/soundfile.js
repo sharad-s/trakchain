@@ -13,7 +13,8 @@ class SoundFile extends Component {
       artist: this.props.artist,
       fileHash: this.props.fileHash,
       fileID: this.props.fileID,
-      color: "red"
+      color: "purple",
+      imageHash: ""
     }
   }
 

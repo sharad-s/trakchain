@@ -25,11 +25,138 @@ const audioJSON = [
     "fileID": 3
   },
   {
-    "name": "You Was Right (Eric Dingus Remix)",
+    "name": "You Was Right",
     "artist": "Eric Dingus",
     "fileHash": "QmczcPVB8ppbVZJBZXGRVdtSVbGxK6s5YN8iD2xhypoXUG",
     "fileID": 4
+  },
+  {
+    "name": "FF308",
+    "artist": "Mr. Carmack",
+    "fileHash": "QmeXvgzS9t67bD2Uwqo7MUn6uDWaTSrv2dDnQLZREhsZGc",
+    "fileID": 5
+  },
+  {
+    "name": "Asdf",
+    "artist": "Octbr",
+    "fileHash": "QmWXcSBwg3nKAsdGzp2b3cJAgs8KsYoPCFoFD2wMqcfNFb",
+    "fileID": 6
+  },
+  {
+    "name": "Solo",
+    "artist": "Joseph L'etranger",
+    "fileHash": "QmUSEvioeAT975qmfjTczixGc2GXwrTUeSGAi7o4ukTyHF",
+    "fileID": 7
+  },
+  {
+    "name": "On Sight",
+    "artist": "88GLAM",
+    "fileHash": "QmbRnx3XYFe6z2a2dYt9k4R2VTZbLTj1T3BybLq7miD9wf",
+    "fileID": 8
+  },
+  {
+    "name": "Panther",
+    "artist": "Made in Heights",
+    "fileHash": "QmUpNqpt2J1q9rpigcyMFoP3x14QXf8SZ7J5r2XGwpLMto",
+    "fileID": 9,
+  },
+  {
+    "name": " 10.9",
+    "artist": "Sharad",
+    "fileHash": "QmTYS5sgTbiwppnZZPT8G8k8J22GaJp48xJZuTUDq8QupK",
+    "fileID": 10
+  },
+  {
+    "name": "Swimming Pools",
+    "artist": "Pierre Bourne",
+    "fileHash": "QmTtdGJg5dToC2tj4oc8BEXeHBuT5iTgkoxpCHzV3AA7tQ",
+    "fileID": 11
+  },
+  {
+    "name": "BARDIEL",
+    "artist": "Joseph L'etranger",
+    "fileHash": "QmYwyNpJf5vMXGnMknqpmF7XMz3aEDk62obmuzfai5g3Rj",
+    "fileID": 12
+  },
+  {
+    "name": "Airglow Fires",
+    "artist": "Lone",
+    "fileHash": "QmehvBw3Jd3zjRKFYp5z9zaJmwUV855iKjWq9qMYGDgU8e",
+    "fileID": 13
+  },
+  {
+    "name": "How He Do That",
+    "artist": "QuincyGotRich!",
+    "fileHash": "QmZi9qToocma6wQ6JFmLST4QNMBZAQ2BK1E4yXqA7RTCxn",
+    "fileID": 14
+  },
+  {
+    "name": "Slop",
+    "artist": "XXX",
+    "fileHash": "QmSw2SG5mGEh9nrLw3Dc1kbwUS9vTDNHvGx5j3h8P5MP9V",
+    "fileID": 15
+  },
+  {
+    "name": "Alberto Balsalm",
+    "artist": "Aphex Twin",
+    "fileHash": "QmcXVEPE3fJBEdYF9rKTgCzWMccQp6ncBY1XXdtCN1E3uS",
+    "fileID": 16
+  },
+  {
+    "name": "Codeine Kiss",
+    "artist": "Eric Dingus",
+    "fileHash": "QmeJfj4zaTWHSnQy3R39Jf9SgRw3iWFvW2bMj48137QmAf",
+    "fileID": 17,
+  },
+  {
+    "name": "Do Right",
+    "artist": "Les Sins",
+    "fileHash": "QmTFzkanxoiyouusLzghCLWMaAdhaJgD4eyUxe2WgeDyp5",
+    "fileID": 18
+  },
+  {
+    "name": "To The Moon",
+    "artist": "SmokePurpp",
+    "fileHash": "QmeA4R3FSGWkz2WXnprbtNvKsgEXFzm3tmXmG22EfDBM8v",
+    "fileID": 19
+  },
+  {
+    "name": "PLAYBOY",
+    "artist": "Joseph L'etranger",
+    "fileHash": "QmbME2YQHX1wnzQUyWzujNREGsj88ASAWHX3cgkXhvR2XJ",
+    "fileID": 20
+  },
+  {
+    "name": "Slide Thru",
+    "artist": "Cakedog",
+    "fileHash": "QmaLvhMjaJjMZPtXGv7mqUAr3qQwxaBe1Co8rYWYMXnzZx",
+    "fileID": 21
+  },
+  {
+    "name": "Chantingz",
+    "artist": "AshTreJenkins",
+    "fileHash": "QmZFF11hviH8fgVyinkLJ8SmHRiWGQdfDMTs3FfrS7gZUg",
+    "fileID": 21
+  },
+  {
+    "name": "Unreleased",
+    "artist": "Rustie",
+    "fileHash": "Qme8McCYXyRUbweGTjvQTaW87Zfq3gKL4v3QfGpQJbjzDf",
+    "fileID": 22
+  },
+  {
+    "name": "Blast",
+    "artist": "Clams Casino",
+    "fileHash": "QmYsT1MS4cuWoQAbKfK6r3r3VHYKAF4cPeEn5JZ4xCVmZr",
+    "fileID": 23
+  },
+  {
+    "name": "Tracks Today",
+    "artist": "Purchase Your",
+    "fileHash": "QmTRxxdXzKCuCQGyW1dpNJg5ghU2pVm3yJ8NNegnF5hpzs",
+    "fileID": 24
   }
+
 ];
 
 class AudioPage extends Component {
@@ -104,7 +231,6 @@ class AudioPage extends Component {
           <div className="pure-g">
             <div className="pure-u-1-1">
               <h1>Audio</h1>
-              <p>Listen up.</p>
             </div>
           </div>
 
