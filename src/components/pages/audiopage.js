@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 // components
-import FooterAudioPlayer from "../constants/footeraudioplayer"
 import SoundFile from "../constants/soundfile"
 
 //Sample Audio Data
@@ -217,23 +216,15 @@ class AudioPage extends Component {
     })
   }
 
-  //Plays audio on AudioPlayer Component
-  //Recieves Soundfile Object from the calling SoundFile Component
+  //Recieves soundFileObject from the Child SoundFile Component
+  //Calls playSound on Parent component, passing soundFileObject
   playSound = async (soundFileObject) => {
-    console.log("FUNCTION PLAYSOUND RECIEVES: ", soundFileObject)
-    await this.setState({
-      currentSound: {
-        name : soundFileObject.name,
-        artist : soundFileObject.artist,
-        fileHash : soundFileObject.fileHash,
-        imageHash : soundFileObject.fileHash,
-        fileID : soundFileObject.fileID
-      }
-    })
-    await this.setState({isPlaying: true})
+    // console.log("FUNCTION PLAYSOUND RECIEVES: ", soundFileObject)
+    this.props.playSound(soundFileObject);
   }
 
   render() {
+
     // For each item in audioElements, return a Soundfile component
     let allSoundFiles = this.state.audioElements.map(item => {
         return <SoundFile key={item.fileID}
@@ -242,8 +233,9 @@ class AudioPage extends Component {
           fileHash={ item.fileHash }
           imageHash={ item.imageHash }
           fileID={ item.fileID }
-          playSound={(hash) => this.playSound(hash)}/>
+          playSound={(soundFileObject) => this.playSound(soundFileObject)}/>
     })
+
     return (
       <div className="ui container">
 
@@ -258,11 +250,6 @@ class AudioPage extends Component {
             {allSoundFiles}
           </div>
         </main>
-
-        <FooterAudioPlayer
-          currentSound={ this.state.currentSound }
-          autoPlay={ this.state.isPlaying }
-        />
 
       </div>
     );

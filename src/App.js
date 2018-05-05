@@ -7,6 +7,7 @@ import MainPage from "./components/pages/mainpage"
 import AboutPage from "./components/pages/aboutpage"
 import AudioPage from "./components/pages/audiopage"
 import UploadPage from "./components/pages/uploadpage"
+import FooterAudioPlayer from "./components/constants/footeraudioplayer"
 
 
 import NavBar from "./components/constants/navbar"
@@ -31,7 +32,9 @@ class App extends Component {
 
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      currentSound: {},
+      isPlaying: null
     }
   }
 
@@ -91,6 +94,21 @@ class App extends Component {
     })
   }
 
+  // Function recieves SoundFileObject from Child, and passes
+  playSound = async (soundFileObject) => {
+    // console.log("PLAYSOUND ON APP.JS RECIEVES: ", soundFileObject)
+    await this.setState({
+      currentSound: {
+        name : soundFileObject.name,
+        artist : soundFileObject.artist,
+        fileHash : soundFileObject.fileHash,
+        imageHash : soundFileObject.fileHash,
+        fileID : soundFileObject.fileID
+      }
+    })
+    await this.setState({isPlaying: true})
+  }
+
   render() {
     return (
         <BrowserRouter>
@@ -98,8 +116,12 @@ class App extends Component {
             <NavBar></NavBar>
             <Route path="/" exact render={(props) => ( <MainPage storageValue={ this.state.storageValue } /> )} />
             <Route path="/about" component={ AboutPage } />
-            <Route path="/audio" component={ AudioPage }  />
+            <Route path="/audio" render={(props) => ( <AudioPage playSound={(soundFileObject) => this.playSound(soundFileObject)} /> )}  />
             <Route path="/upload" component={ UploadPage }  />
+            <FooterAudioPlayer
+              currentSound={ this.state.currentSound }
+              autoPlay={ this.state.isPlaying }
+            />
           </div>
         </BrowserRouter>
     );
