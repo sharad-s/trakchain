@@ -6,6 +6,8 @@ import { BrowserRouter, Route  } from 'react-router-dom'
 import MainPage from "./components/pages/mainpage"
 import AboutPage from "./components/pages/aboutpage"
 import AudioPage from "./components/pages/audiopage"
+import UploadPage from "./components/pages/uploadpage"
+
 
 import NavBar from "./components/constants/navbar"
 
@@ -97,6 +99,7 @@ class App extends Component {
             <Route path="/" exact render={(props) => ( <MainPage storageValue={ this.state.storageValue } /> )} />
             <Route path="/about" component={ AboutPage } />
             <Route path="/audio" component={ AudioPage }  />
+            <Route path="/upload" component={ UploadPage }  />
           </div>
         </BrowserRouter>
     );
