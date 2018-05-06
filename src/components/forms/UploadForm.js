@@ -93,6 +93,7 @@ class UploadForm extends Component {
         //setState by setting ipfsHash to ipfsHash[0].hash
         this.setState({ audioHash:ipfsHash[0].hash });
         uploadObject.audioHash = this.state.audioHash;
+        console.log(this.state.audioHash)
     })
 
     await ipfs.add(this.state.imageBuffer, (err, ipfsHash) => {
@@ -100,9 +101,13 @@ class UploadForm extends Component {
         //setState by setting ipfsHash to ipfsHash[0].hash
         this.setState({ imageHash:ipfsHash[0].hash });
         uploadObject.imageHash = this.state.imageHash;
+        console.log(this.state.imageHash)
+
     })
 
+
     await this.setState({uploadObject})
+    console.log(this.state)
 
   }
 
@@ -143,14 +148,14 @@ class UploadForm extends Component {
 
         <label>
           File:
-          <input type="file" onChange={this.captureAudioFile} />
+          <input type="file" accept=".mp3, .wav, .m4a" onChange={this.captureAudioFile} />
           <span>{ this.state.uploadObject.audioHash }</span>
         </label>
         <br />
 
         <label>
           Photo:
-          <input type="file" onChange={this.captureImageFile} />
+          <input type="file" accept=".jpg,.png, .jpeg" onChange={this.captureImageFile} />
           <span>{ this.state.uploadObject.imageHash }</span>
         </label>
         <br />

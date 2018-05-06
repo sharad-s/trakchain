@@ -14,7 +14,7 @@ body,
 }
 
 h1, h2, h3 {
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  font-family: 'Raleway', 'Arial Narrow', sans-serif;
 }
 
 code {
@@ -52,8 +52,8 @@ code {
   position: fixed;
   padding: 5px;
   background: #fff;
-  background: #0c1a2b;
-  font-family: 'Oswald', 'Arial Narrow', sans-serif;
+  background: #000;
+  font-family: 'Raleway', 'Arial Narrow', sans-serif;
   /* border-bottom: 1px outset #000; */
   flex: 0 0 auto;
   order: 1;

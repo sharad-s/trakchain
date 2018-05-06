@@ -19,12 +19,6 @@ class SoundFile extends Component {
   }
 
   componentDidMount(){
-    // If color is specified, pass in color.
-    if (this.props.color){
-      this.setState({
-        color: this.props.color
-      })
-    }
   }
 
   handleClick(e) {
