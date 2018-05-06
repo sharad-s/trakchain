@@ -160,7 +160,19 @@ code {
 
 };
 
+/* FORMS  */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  background-color: red;
+}
 
+.upload-form label {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+
+}
 
 @media screen and (min-width: 476px) {
 }

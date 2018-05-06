@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-// import UploadForm from "../forms/UploadForm";
+import UploadForm from "../forms/UploadForm";
 
 //links
 
@@ -16,6 +16,7 @@ const UploadPage = (props) => (
       </div>
     </main>
 
+  <UploadForm></UploadForm>
   </div>
 )
 
