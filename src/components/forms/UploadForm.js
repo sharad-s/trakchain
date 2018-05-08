@@ -82,55 +82,47 @@ class UploadForm extends Component {
         "imageHash" : ''
     }
 
-
-
     // bring in the user's metamask account address
     // obtain contract address from storehash.js
     //save audio to IPFS,return its hash#, and set hash# to state
 
+    // IPFS add audio
     await ipfs.add(this.state.audioBuffer, (err, ipfsHash) => {
         console.log(err,ipfsHash);
         //setState by setting ipfsHash to ipfsHash[0].hash
         this.setState({ audioHash:ipfsHash[0].hash });
         uploadObject.audioHash = this.state.audioHash;
-        console.log(this.state.audioHash)
+        console.log("Audio Hash: ", this.state.audioHash)
     })
 
+    // IPFS add image
     await ipfs.add(this.state.imageBuffer, (err, ipfsHash) => {
         console.log(err,ipfsHash);
         //setState by setting ipfsHash to ipfsHash[0].hash
         this.setState({ imageHash:ipfsHash[0].hash });
         uploadObject.imageHash = this.state.imageHash;
-        console.log(this.state.imageHash)
-
+        console.log("Image Hash: ", this.state.imageHash)
     })
 
+    //
+    // await this.setState({uploadObject})
+     console.log(uploadObject)
 
-    await this.setState({uploadObject})
-    console.log(this.state)
+     await this.props.onAdd(uploadObject);
+     
+     this.setState({
+       "nameFormValue" : '',
+       "artistFormValue" : '',
+       "audioBuffer" : {},
+       "imageBuffer" : {}
+     });
 
-  }
 
-  // uploadObject = async () => {
-  //   return {
-  //     "name" : this.state.nameFormValue,
-  //     "artist" : this.state.artistFormValue,
-  //     "audioHash" : await this.ipfsAdd(this.state.audioBuffer),
-  //     "imageHash" : await this.ipfsAdd(this.state.imageBuffer)
-  //   }
-  // }
-  //
-  // ipfsAdd = async (buffer) => {
-  //   await ipfs.add(buffer, (err, ipfsHash) => {
-  //     console.log(err,ipfsHash);
-  //     //setState by setting ipfsHash to ipfsHash[0].hash
-  //     return ipfsHash
-  //   })
-  // }
+ }
 
   render() {
     return (
-      <form className="upload-form"onSubmit={this.onSubmit}>
+      <form className="upload-form" onSubmit={this.onSubmit}>
 
         <label>
           Name:
