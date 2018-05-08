@@ -13,10 +13,11 @@ class UploadPage extends Component {
     this.onAdd.bind(this);
   }
 
-
    onAdd = async (uploadObject) => {
-
     let audioJSON = JSON.parse(localStorage.getItem('audioJSON'));
+    // uploadObject.push({
+    //   fileID: audioJSON.length+1
+    // })
     audioJSON.push(uploadObject)
     localStorage.setItem('audioJSON', JSON.stringify(audioJSON));
     console.log("Done")

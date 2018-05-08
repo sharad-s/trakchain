@@ -6,6 +6,7 @@ import ipfs from "../../utils/ipfs";
 // https://itnext.io/build-a-simple-ethereum-interplanetary-file-system-ipfs-react-js-dapp-23ff4914ce4e
 
 class UploadForm extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,7 +21,6 @@ class UploadForm extends Component {
 
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleArtistChange = this.handleArtistChange.bind(this);
-
     this.onSubmit = this.onSubmit.bind(this);
   }
 
@@ -85,40 +85,51 @@ class UploadForm extends Component {
     // bring in the user's metamask account address
     // obtain contract address from storehash.js
     //save audio to IPFS,return its hash#, and set hash# to state
+    console.log("YO")
 
     // IPFS add audio
-    await ipfs.add(this.state.audioBuffer, (err, ipfsHash) => {
-        console.log(err,ipfsHash);
-        //setState by setting ipfsHash to ipfsHash[0].hash
-        this.setState({ audioHash:ipfsHash[0].hash });
-        uploadObject.audioHash = this.state.audioHash;
-        console.log("Audio Hash: ", this.state.audioHash)
+    await ipfs.add(this.state.audioBuffer)
+    .then( ipfsHash => {
+      let audioHash = ipfsHash[0].hash
+      this.setState({ audioHash })
+      uploadObject.audioHash = this.state.audioHash;
+      console.log("AUDIO HASH: ", this.state.audioHash)
+    }).then( () => {
+        return ipfs.add(this.state.imageBuffer)
+    }).then( ipfsHash => {
+      let imageHash = ipfsHash[0].hash
+      this.setState({ imageHash })
+      uploadObject.imageHash = this.state.imageHash;
+      console.log("IMAGE HASH: ", this.state.imageHash)
+    }).then( () => {
+      alert("UPLOAD FINISHED: ", uploadObject)
+      this.props.onAdd(uploadObject);
+      this.setState({
+        "nameFormValue" : '',
+        "artistFormValue" : '',
+        "audioBuffer" : {},
+        "imageBuffer" : {},
+        "uploadObject": uploadObject
+      });
     })
-
-    // IPFS add image
-    await ipfs.add(this.state.imageBuffer, (err, ipfsHash) => {
-        console.log(err,ipfsHash);
-        //setState by setting ipfsHash to ipfsHash[0].hash
-        this.setState({ imageHash:ipfsHash[0].hash });
-        uploadObject.imageHash = this.state.imageHash;
-        console.log("Image Hash: ", this.state.imageHash)
-    })
-
-    //
-    // await this.setState({uploadObject})
-     console.log(uploadObject)
-
-     await this.props.onAdd(uploadObject);
-     
-     this.setState({
-       "nameFormValue" : '',
-       "artistFormValue" : '',
-       "audioBuffer" : {},
-       "imageBuffer" : {}
-     });
-
-
  }
+
+  ipfsAdd(buffer) {
+    console.log("Promise begun")
+    return new Promise((resolve, reject) => {
+      console.log("It is Beginning.");
+      try {
+        ipfs.add(buffer, (ipfsHash) => {
+          // console.log(ipfsHash);
+          console.log("It has ended.")
+          resolve(ipfsHash)
+        })
+     } catch(err) {
+         reject(err);
+     }
+   })
+ }
+
 
   render() {
     return (
