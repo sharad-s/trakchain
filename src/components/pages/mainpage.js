@@ -27,7 +27,7 @@ const MainPage = (props) => (
 
 
 MainPage.PropTypes = {
-  // isAuthenticated: PropTypes.bool.isRequired
+  storageValue: PropTypes.int
 };
 
 export default (MainPage);

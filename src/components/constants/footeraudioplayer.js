@@ -28,12 +28,17 @@ class FooterAudioPlayer extends Component {
 
   render() {
     //Construct audio source URL and render audio element. Show audio details if playing
-    let url=  this.state.baseUrl + this.state.currentSound.fileHash
+
+    var url = this.state.baseUrl + this.state.currentSound.fileHash;
+    if (!this.state.isPlaying) {
+      url = ""
+    };
+
     return (
       <div className="footer">
-        <ReactAudioPlayer className="audio" src={url} controls autoPlay={this.props.autoPlay}/>
+        <ReactAudioPlayer className="audio" src={url} controls autoPlay={this.state.isPlaying}/>
 
-        { this.props.autoPlay ?
+        { this.state.isPlaying ?
           <p> <strong> {this.state.currentSound.name}</strong> - {this.state.currentSound.artist}</p>
         : <p />
         }

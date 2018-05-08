@@ -120,7 +120,7 @@ class App extends Component {
             <Route path="/upload" component={ UploadPage }  />
             <FooterAudioPlayer
               currentSound={ this.state.currentSound }
-              autoPlay={ this.state.isPlaying }
+              isPlaying={ this.state.isPlaying }
             />
           </div>
         </BrowserRouter>

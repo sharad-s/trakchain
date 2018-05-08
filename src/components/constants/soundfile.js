@@ -52,7 +52,12 @@ class SoundFile extends Component {
 }
 
 SoundFile.PropTypes = {
-
+  name: PropTypes.string.isRequired,
+  artist: PropTypes.string.isRequired,
+  fileHash: PropTypes.string.isRequired,
+  imageHash: PropTypes.string.isRequired,
+  fileID: PropTypes.number.isRequired,
+  playSound: PropTypes.func.isRequired
 }
 
 export default SoundFile
