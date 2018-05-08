@@ -11,7 +11,7 @@ class SoundFile extends Component {
     this.state = {
       name: this.props.name,
       artist: this.props.artist,
-      fileHash: this.props.fileHash,
+      audioHash: this.props.audioHash,
       imageHash: this.props.imageHash,
       fileID: this.props.fileID,
       color: "purple"
@@ -26,10 +26,10 @@ class SoundFile extends Component {
     e.preventDefault();
 
     // Destructure vars from state
-    const { name, artist, fileHash, imageHash, fileID } = this.state;
+    const { name, artist, audioHash, imageHash, fileID } = this.state;
 
     // Create object to be passed to playSound function
-    const soundFileObject = { name, artist, fileHash, imageHash, fileID }
+    const soundFileObject = { name, artist, audioHash, imageHash, fileID }
 
     // Call playSound function from parent
     this.props.playSound(soundFileObject)
@@ -54,7 +54,7 @@ class SoundFile extends Component {
 SoundFile.PropTypes = {
   name: PropTypes.string.isRequired,
   artist: PropTypes.string.isRequired,
-  fileHash: PropTypes.string.isRequired,
+  audioHash: PropTypes.string.isRequired,
   imageHash: PropTypes.string.isRequired,
   fileID: PropTypes.number.isRequired,
   playSound: PropTypes.func.isRequired

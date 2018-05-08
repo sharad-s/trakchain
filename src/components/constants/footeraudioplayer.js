@@ -29,7 +29,7 @@ class FooterAudioPlayer extends Component {
   render() {
     //Construct audio source URL and render audio element. Show audio details if playing
 
-    var url = this.state.baseUrl + this.state.currentSound.fileHash;
+    var url = this.state.baseUrl + this.state.currentSound.audioHash;
     if (!this.state.isPlaying) {
       url = ""
     };

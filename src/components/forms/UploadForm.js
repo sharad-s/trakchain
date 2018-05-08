@@ -90,20 +90,27 @@ class UploadForm extends Component {
     // IPFS add audio
     await ipfs.add(this.state.audioBuffer)
     .then( ipfsHash => {
+      //  IPFS add Audio
       let audioHash = ipfsHash[0].hash
       this.setState({ audioHash })
       uploadObject.audioHash = this.state.audioHash;
       console.log("AUDIO HASH: ", this.state.audioHash)
+
     }).then( () => {
         return ipfs.add(this.state.imageBuffer)
+
     }).then( ipfsHash => {
+      //  IPFS add Image
       let imageHash = ipfsHash[0].hash
       this.setState({ imageHash })
       uploadObject.imageHash = this.state.imageHash;
       console.log("IMAGE HASH: ", this.state.imageHash)
-    }).then( () => {
+
+    }).then( async () => {
       alert("UPLOAD FINISHED: ", uploadObject)
-      this.props.onAdd(uploadObject);
+      console.log("UPLOAD FINISHED: ", uploadObject)
+
+      await this.props.onAdd(uploadObject);
       this.setState({
         "nameFormValue" : '',
         "artistFormValue" : '',
