@@ -19,35 +19,34 @@ class SoundFile extends Component {
   }
 
   componentDidMount(){
+
   }
 
   handleClick(e) {
-    // e.preventDefault();
-    // Call playSound function from props
-    const soundFileObject = {
-      "name": this.state.name,
-      "artist": this.state.artist,
-      "fileHash": this.state.fileHash,
-      "imageHash": this.state.imageHash,
-      "fileID": this.state.fileID
-    }
-    console.log("SOUNDFILE OBJECT: ", soundFileObject)
+    e.preventDefault();
+
+    // Destructure vars from state
+    const { name, artist, fileHash, imageHash, fileID } = this.state;
+
+    // Create object to be passed to playSound function
+    const soundFileObject = { name, artist, fileHash, imageHash, fileID }
+
+    // Call playSound function from parent
     this.props.playSound(soundFileObject)
   }
 
   render() {
-    // let color="#" + this.state.color
     let imageURL = "http://localhost:8080/ipfs/" + this.state.imageHash;
 
     return (
       <div className="flex-box">
         <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)}>
-          <img src={imageURL} />
+          <img alt="soundFile" src={imageURL} />
         </div>
         <span> {this.state.artist} </span> <br/>
         <span> {this.state.name} </span>
-
       </div>
+
     );
   }
 }
