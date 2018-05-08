@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 
+// Prop types
+import PropTypes from "prop-types";
+
+
 // components
 import SoundFile from "../constants/SoundFile"
 
@@ -69,6 +73,7 @@ class AudioPage extends Component {
 
 AudioPage.PropTypes = {
   // isAuthenticated: PropTypes.bool.isRequired
+  playSound: PropTypes.func.isRequired
 };
 
 

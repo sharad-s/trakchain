@@ -10,8 +10,8 @@ class FooterAudioPlayer extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      // baseUrl: "https://ipfs.io/ipfs/",
-      baseUrl: "http://localhost:8080/ipfs/",
+      baseUrl: "https://ipfs.infura.io/ipfs/",
+      // baseUrl: "http://localhost:8080/ipfs/",
       currentSound: {},
       isPlaying: this.props.isPlaying,
     }
