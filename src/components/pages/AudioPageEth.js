@@ -29,14 +29,6 @@ class AudioPageEth extends Component {
   }
 
   componentDidMount() {
-    // // Instantiate contract once web3 provided.
-    // this.instantiateContract()
-
-    // Get Queried Beats. Localstorage Hack for immediate response
-    // this.getAudioElements()
-
-    // let audioElements = JSON.parse(localStorage.getItem('audioJSON'));
-    // this.setState({ audioElements });
 
     const provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
     const web3 = new Web3(provider);
@@ -115,8 +107,8 @@ class AudioPageEth extends Component {
           }) //end async createAudioInstance promise chain
 
         } //end for loop
-      }) //end last promise in deployed promisechain
-    })
+      }) //end out promise in deployed promisechain
+    }) //end getAccounts
   } //end instantiateContract
 
 
