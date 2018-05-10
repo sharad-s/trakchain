@@ -9,7 +9,10 @@ import AudioPage from "./components/pages/AudioPage"
 import UploadPage from "./components/pages/UploadPage"
 import FooterAudioPlayer from "./components/constants/FooterAudioPlayer"
 
+// ETH Components
+import AudioPageEth from "./components/pages/AudioPageEth"
 
+// Constant Components
 import NavBar from "./components/constants/NavBar"
 
 
@@ -81,15 +84,24 @@ class App extends Component {
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
 
-        // Stores a given value, 5 by default.
-        return simpleStorageInstance.set(5, {from: accounts[0]})
-      }).then((result) => {
-        // Get the value from the contract to prove it worked.
+        // Store a given value, 5 by default.
+        return simpleStorageInstance.set(9, {from: accounts[1]})
 
-        return simpleStorageInstance.get.call(accounts[0])
+        // Upload track data to the chain. Gas required ~ 500k D:
+        // return simpleStorageInstance.createAudioEntry("PLAYBOY", "Joseph L'etranger", "QmbME2YQHX1wnzQUyWzujNREGsj88ASAWHX3cgkXhvR2XJ", "QmUBTAg3oVd68Yrrn887UtVwkbqbrbWCeuMVNTPT4zZQ1e", {from: accounts[0], gas:1000000 })
       }).then((result) => {
-        // Update state with the result.
+        // Get the value of AudioCount from the contract to prove it worked.
+
+        // console.log("TX Receipt for set on App.js: " ,result)
+        return simpleStorageInstance.getAudioCount.call(accounts[0])
+      }).then((result) => {
+        // Update state with the result of call.
+
         return this.setState({ storageValue: result.c[0] })
+      }).then(result => {
+        // Get first item from contract storage.
+
+        return simpleStorageInstance.getAudioEntry.call(1, {from: accounts[0]})
       })
     })
   }
@@ -116,7 +128,7 @@ class App extends Component {
             <NavBar></NavBar>
             <Route path="/" exact render={(props) => ( <MainPage storageValue={ this.state.storageValue } /> )} />
             <Route path="/about" component={ AboutPage } />
-            <Route path="/audio" render={(props) => ( <AudioPage playSound={(soundFileObject) => this.playSound(soundFileObject)} /> )}  />
+            <Route path="/audio" render={(props) => ( <AudioPageEth playSound={(soundFileObject) => this.playSound(soundFileObject)} /> )}  />
             <Route path="/upload" component={ UploadPage }  />
             <FooterAudioPlayer
               currentSound={ this.state.currentSound }
