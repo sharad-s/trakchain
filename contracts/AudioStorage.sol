@@ -1,6 +1,8 @@
 pragma solidity ^0.4.18;
+import "./SimpleStorage.sol";
 
-contract AudioStorage {
+
+contract AudioStorage is SimpleStorage {
     uint soundID = 0;
 
     struct AudioFile{

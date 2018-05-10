@@ -114,6 +114,8 @@ code {
 .footer p {
   order: 2;
   flex: 1;
+  font-size: 12px;
+  padding-left: 10px;
 }
 
 

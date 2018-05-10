@@ -16,7 +16,7 @@ import NavBar from "./components/constants/NavBar"
 
 
 //Smart Contracts
-import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
+import AudioStorageContract from '../build/contracts/AudioStorage.json'
 import getWeb3 from './utils/getWeb3'
 import Web3 from 'web3'
 
@@ -70,7 +70,7 @@ class App extends Component {
      */
 
     const contract = require('truffle-contract')
-    const simpleStorage = contract(SimpleStorageContract)
+    const simpleStorage = contract(AudioStorageContract)
     simpleStorage.setProvider(this.state.web3.currentProvider)
 
     // Declaring this for later so we can chain functions on SimpleStorage.
