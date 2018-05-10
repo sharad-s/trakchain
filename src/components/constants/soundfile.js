@@ -36,7 +36,7 @@ class SoundFile extends Component {
   }
 
   render() {
-    let imageURL = "http://localhost:8080/ipfs/" + this.state.imageHash;
+    let imageURL = "https://ipfs.infura.io/ipfs/" + this.state.imageHash;
 
     return (
       <div className="flex-box">
