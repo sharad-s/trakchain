@@ -121,10 +121,14 @@ class AudioPageEth extends Component {
   render() {
     // For each item in audioElements, return a Soundfile component
     let allSoundFiles = this.state.audioElements.map(sounditem => {
-      return <SoundFile
-        key={sounditem.fileID}
-        {...sounditem}
-        playSound={(soundFileObject) => this.playSound(soundFileObject)}/>
+      return(
+        <div className='pure-u-1-3' >
+          <SoundFile
+            key={sounditem.fileID}
+            {...sounditem}
+            playSound={(soundFileObject) => this.playSound(soundFileObject)}/>
+        </div>
+      )
     })
 
     return (
@@ -139,7 +143,7 @@ class AudioPageEth extends Component {
           </div>
 
           <div className="flex-container" style={{ backgroundColor: this.state.currentColor}} >
-            {allSoundFiles}
+              {allSoundFiles}
           </div>
         </main>
 
