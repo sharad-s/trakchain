@@ -83,9 +83,10 @@ class App extends Component {
     this.state.web3.eth.getAccounts((error, accounts) => {
       simpleStorage.deployed().then((instance) => {
         simpleStorageInstance = instance
+        return simpleStorageInstance
 
         // Store a given value, 5 by default.
-        return simpleStorageInstance.set(9, {from: accounts[1]})
+        // return simpleStorageInstance.set(9, {from: accounts[1]})
 
         // Upload track data to the chain. Gas required ~ 500k D:
         // return simpleStorageInstance.createAudioEntry("PLAYBOY", "Joseph L'etranger", "QmbME2YQHX1wnzQUyWzujNREGsj88ASAWHX3cgkXhvR2XJ", "QmUBTAg3oVd68Yrrn887UtVwkbqbrbWCeuMVNTPT4zZQ1e", {from: accounts[0], gas:1000000 })

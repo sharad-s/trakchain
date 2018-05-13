@@ -145,28 +145,24 @@ class UploadForm extends Component {
         <label>
           Name:
           <input type="text" value={this.state.nameFormValue} onChange={this.handleNameChange} />
-          <span>{ this.state.uploadObject.name }</span>
         </label>
         <br />
 
         <label>
           Artist:
           <input type="text" value={this.state.artistFormValue} onChange={this.handleArtistChange} />
-          <span>{ this.state.uploadObject.artist }</span>
         </label>
         <br />
 
         <label>
           File:
           <input type="file" accept=".mp3, .wav, .m4a" onChange={this.captureAudioFile} />
-          <span>{ this.state.uploadObject.audioHash }</span>
         </label>
         <br />
 
         <label>
           Photo:
           <input type="file" accept=".jpg,.png, .jpeg" onChange={this.captureImageFile} />
-          <span>{ this.state.uploadObject.imageHash }</span>
         </label>
         <br />
 

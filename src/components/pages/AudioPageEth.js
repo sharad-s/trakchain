@@ -3,15 +3,12 @@ import React, { Component } from 'react'
 // Prop types
 import PropTypes from "prop-types";
 
-
 // components
 import SoundFile from "../constants/SoundFile"
 
 // Smart Contracts
 import getWeb3 from '../../utils/getWeb3'
 import AudioStorageContract from '../../../build/contracts/AudioStorage.json'
-import Web3 from 'web3'
-
 
 class AudioPageEth extends Component {
 
@@ -25,25 +22,31 @@ class AudioPageEth extends Component {
       isPlaying:null,
       isRinkeby:false,
       audioCount: 0,
+      audioStorage: {}    //Contract Object
     }
   }
 
   componentDidMount() {
 
-    const provider = new Web3.providers.HttpProvider('http://127.0.0.1:8545');
-    const web3 = new Web3(provider);
-
     getWeb3
     .then(results => {
       this.setState({
-        // web3: results.web3
-        web3 : web3
+        web3: results.web3
       })
+
+    }).then(results => {
+      // Instantiate Contract communication
+      const contract = require('truffle-contract')
+      const audioStorage = contract(AudioStorageContract)
+      audioStorage.setProvider(this.state.web3.currentProvider)
+      this.setState({ audioStorage })
+
+    }).then(results => {
       // Instantiate contract once web3 provided.
       this.instantiateContract()
     })
-    .catch(() => {
-      console.log('Error finding web3.')
+    .catch((err) => {
+      console.log('Error: ', err)
     })
 
   }
@@ -54,30 +57,25 @@ class AudioPageEth extends Component {
 
   instantiateContract() {
 
-    // Smart contract instantiaion
-    const contract = require('truffle-contract')
-    const simpleStorage = contract(AudioStorageContract)
-    simpleStorage.setProvider(this.state.web3.currentProvider)
-
     // Declaring this for later so we can chain functions on SimpleStorage.
-    var simpleStorageInstance
+    var audioStorageInstance
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
-      simpleStorage.deployed().then((instance) => {
-        simpleStorageInstance = instance
+      this.state.audioStorage.deployed().then((instance) => {
+        audioStorageInstance = instance
+        return audioStorageInstance.getAudioCount.call(accounts[0])
 
-        return simpleStorageInstance.getAudioCount.call(accounts[0])
       }).then((result) => {
         // Update state with the result of call.
-
         console.log("AUDIO COUNT: " ,result.c[0])
         return this.setState({ audioCount: result.c[0] })
+
       }).then( async result => {
         // Update audioElements object with each AudioElement on chain
-
         for (let i = 0; i < this.state.audioCount; i++){
-          const createAudioInstance = await simpleStorageInstance.getAudioEntry.call(i, {from: accounts[0]}).then( result => {
+          const createAudioInstance = await audioStorageInstance.getAudioEntry.call(i, {from: accounts[0]})
+          .then( result => {
             var audioElement = {
               "name": result[0],
               "artist": result[1],
@@ -87,11 +85,9 @@ class AudioPageEth extends Component {
               "owner": result[5]
             }
             return audioElement
-            // console.log(audioElements, audioElement)
-            // audioElements.push(audioElement)
-            // this.setState({ audioElements })
+
           }).then( audioElement => {
-            console.log("RES: ", audioElement);
+
             // Push audioElement to state
             try {
               var audioElements = JSON.parse(this.state.audioElements);
@@ -107,6 +103,7 @@ class AudioPageEth extends Component {
           }) //end async createAudioInstance promise chain
 
         } //end for loop
+
       }) //end out promise in deployed promisechain
     }) //end getAccounts
   } //end instantiateContract
