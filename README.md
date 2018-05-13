@@ -4,9 +4,9 @@ Built on the blockchain.
 
 ## Installation
 
-1. Install Truffle globally.
+1. Install Truffle, IPFS and Ganache-CLI globally.
     ```javascript
-    npm install -g truffle ipfs
+    npm install -g truffle ipfs ganache-cli
     ```
 
 2. Install Dependencies.
@@ -14,21 +14,16 @@ Built on the blockchain.
     npm install
     ```
 
-3. Run the development console.
+3. Compile and migrate the smart contracts.
     ```javascript
-    truffle develop
+    truffle compile
+    truffle migrate
     ```
 
-4. Compile and migrate the smart contracts. Note inside the development console we don't preface commands with `truffle`.
+5. Spin up a local Ethereum RPC node in a separate window using Ganache-CLI.  
     ```javascript
-    compile
-    migrate
-    ```
-
-5. Spin up an IPFS daemon in a separate window.  
-    ```javascript
-    // In a separate window
-    ipfs daemon
+    // In a separate shell window
+    ganache-cli
     ```
 
 5. Run the webpack server for front-end hot reloading (outside the development console). Smart contract changes must be manually recompiled and migrated.
