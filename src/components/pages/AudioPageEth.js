@@ -37,8 +37,9 @@ class AudioPageEth extends Component {
     }).then(results => {
       // Instantiate Contract communication
       const contract = require('truffle-contract')
-      const audioStorage = contract(AudioStorageContract)
-      audioStorage.setProvider(this.state.web3.currentProvider)
+      const audioStorageContract = contract(AudioStorageContract)
+      audioStorageContract.setProvider(this.state.web3.currentProvider)
+      const audioStorage = audioStorageContract.at("0xd842665d09aa9c2f3afdd416e528aa398d1051f6")
       this.setState({ audioStorage })
 
     }).then(results => {
@@ -58,15 +59,13 @@ class AudioPageEth extends Component {
   instantiateContract() {
 
     // Declaring this for later so we can chain functions on SimpleStorage.
-    var audioStorageInstance
+    var audioStorageInstance = this.state.audioStorage
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
-      this.state.audioStorage.deployed().then((instance) => {
-        audioStorageInstance = instance
-        return audioStorageInstance.getAudioCount.call(accounts[0])
-
-      }).then((result) => {
+      console.log(this.state.audioStorage)
+      audioStorageInstance.getAudioCount()
+      .then((result) => {
         // Update state with the result of call.
         console.log("AUDIO COUNT: " ,result.c[0])
         return this.setState({ audioCount: result.c[0] })
