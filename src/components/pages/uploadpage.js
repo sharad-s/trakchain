@@ -33,8 +33,9 @@ class UploadPage extends Component {
     }).then( results => {
       // Instantiate Contract communication
       const contract = require('truffle-contract')
-      const audioStorage = contract(AudioStorageContract)
-      audioStorage.setProvider(this.state.web3.currentProvider)
+      const audioStorageContract = contract(AudioStorageContract)
+      audioStorageContract.setProvider(this.state.web3.currentProvider)
+      const audioStorage = audioStorageContract.at("0xd842665d09aa9c2f3afdd416e528aa398d1051f6")
       this.setState({ audioStorage })
     })
     .catch(() => {
@@ -47,15 +48,13 @@ class UploadPage extends Component {
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
-      this.state.audioStorage.deployed().then((audioStorageInstance) => {
-        // Upload track data to the chain. Gas required ~ 500k D:
-        return audioStorageInstance.createAudioEntry(
+      this.state.audioStorage.createAudioEntry(
           uploadObject.name,
           uploadObject.artist,
           uploadObject.audioHash,
           uploadObject.imageHash,
           {from: accounts[0], gas:1000000})
-      }).then((result) => {
+        .then((result) => {
         this.setState({ uploadObject, txReceipt: result })
         console.log("TX Receipt for createAudioEntry on UploadPage.js: " , result)
       })
