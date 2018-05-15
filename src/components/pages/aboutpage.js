@@ -1,12 +1,11 @@
-import React from 'react'
+import React from "react";
 
 // components
 
 //links
 
-const AboutPage = (props) => (
+const AboutPage = props => (
   <div className="ui container">
-
     <main className="container">
       <div className="pure-g">
         <div className="pure-u-1-1">
@@ -15,14 +14,11 @@ const AboutPage = (props) => (
         </div>
       </div>
     </main>
-
   </div>
-)
-
-
+);
 
 AboutPage.PropTypes = {
   // isAuthenticated: PropTypes.bool.isRequired
 };
 
-export default (AboutPage);
+export default AboutPage;

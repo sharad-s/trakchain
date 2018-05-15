@@ -6,15 +6,15 @@ App {
   flex-direction: column;
 }
 
-
 body,
-.pure-g [class*=pure-u] {
-  font-family: 'Open Sans', sans-serif;
-
+.pure-g [class*="pure-u"] {
+  font-family: "Open Sans", sans-serif;
 }
 
-h1, h2, h3 {
-  font-family: 'Raleway', 'Arial Narrow', sans-serif;
+h1,
+h2,
+h3 {
+  font-family: "Raleway", "Arial Narrow", sans-serif;
 }
 
 code {
@@ -53,7 +53,7 @@ code {
   padding: 5px;
   background: #fff;
   background: #000;
-  font-family: 'Raleway', 'Arial Narrow', sans-serif;
+  font-family: "Raleway", "Arial Narrow", sans-serif;
   /* border-bottom: 1px outset #000; */
   flex: 0 0 auto;
   order: 1;
@@ -62,7 +62,7 @@ code {
 .navbar a {
   color: #000;
   color: #fff;
-  padding : 5px;
+  padding: 5px;
 }
 
 .navbar a:active,
@@ -118,17 +118,12 @@ code {
   padding-left: 10px;
 }
 
-
-
 /* FLEXBOX  */
 
 .flex-container {
-
   display: flex;
   -webkit-flex-flow: row wrap;
   justify-content: center;
-
-
 }
 
 .flex-item {
@@ -139,7 +134,7 @@ code {
   height: 10vw;
   width: 10vw;
   line-height: 10vw;
-  flex : 1 0 10%;
+  flex: 1 0 10%;
   /* Child Image rezing */
   display: flex;
 }
@@ -156,8 +151,7 @@ code {
   width: 10vw;
   height: 10vw;
   display: ;
-
-};
+}
 
 /* FORMS  */
 .upload-form {
@@ -170,7 +164,6 @@ code {
   display: flex;
   flex-direction: row;
   justify-content: left;
-
 }
 
 @media screen and (min-width: 476px) {
