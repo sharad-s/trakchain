@@ -2,6 +2,11 @@
 Trakchain is Invite-only beat marketplace for independent artists and producers.
 Built on the blockchain.
 
+## Demo
+
+Check out
+This demo uses the Ropsten test network.
+
 ## Installation
 
 1. Install Truffle, IPFS and Ganache-CLI globally.

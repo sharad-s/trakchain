@@ -57,7 +57,7 @@ class AudioPage extends Component {
         <main className="container">
           <div className="pure-g">
             <div className="pure-u-1-1">
-              <h1>Audio</h1>
+              <h1>⛓ TRAKCHAIN</h1>
             </div>
           </div>
 
