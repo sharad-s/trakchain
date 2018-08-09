@@ -1,13 +1,11 @@
-import React, { Component } from 'react'
-
+import React, { Component } from "react";
 
 // Props
 import PropTypes from "prop-types";
 
 class SoundFile extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: this.props.name,
       artist: this.props.artist,
@@ -15,12 +13,10 @@ class SoundFile extends Component {
       imageHash: this.props.imageHash,
       fileID: this.props.fileID,
       color: "purple"
-    }
+    };
   }
 
-  componentDidMount(){
-
-  }
+  componentDidMount() {}
 
   handleClick(e) {
     e.preventDefault();
@@ -29,10 +25,10 @@ class SoundFile extends Component {
     const { name, artist, audioHash, imageHash, fileID } = this.state;
 
     // Create object to be passed to playSound function
-    const soundFileObject = { name, artist, audioHash, imageHash, fileID }
+    const soundFileObject = { name, artist, audioHash, imageHash, fileID };
 
     // Call playSound function from parent
-    this.props.playSound(soundFileObject)
+    this.props.playSound(soundFileObject);
   }
 
   render() {
@@ -40,13 +36,16 @@ class SoundFile extends Component {
 
     return (
       <div className="flex-box">
-        <div className="flex-item" style={{backgroundColor: this.state.color}} onClick={this.handleClick.bind(this)}>
+        <div
+          className="flex-item"
+          style={{ backgroundColor: this.state.color }}
+          onClick={this.handleClick.bind(this)}
+        >
           <img alt="soundFile" src={imageURL} />
         </div>
-        <span> {this.state.artist} </span> <br/>
+        <span> {this.state.artist} </span> <br />
         <span> {this.state.name} </span>
       </div>
-
     );
   }
 }
@@ -58,6 +57,6 @@ SoundFile.PropTypes = {
   imageHash: PropTypes.string.isRequired,
   fileID: PropTypes.number.isRequired,
   playSound: PropTypes.func.isRequired
-}
+};
 
-export default SoundFile
+export default SoundFile;
